@@ -10,16 +10,23 @@ ruscproc <- function(filelist, users, metrics){
         result
 }
 
-#files <- c("Baseline_900users.csv", "Baseline_1200users.csv", "Baseline_1800users.csv", "Baseline_2400users.csv", "Baseline_2997users.csv")
-files <- c("FileAudit_Baseline_900users.csv", "FileAudit_Baseline_1200users.csv", "FileAudit_Baseline_1800users.csv", "FileAudit_Baseline_2400users.csv", "FileAudit_Baseline_2997users.csv")
+bl <- c("Baseline_900users.csv", "Baseline_1200users.csv", "Baseline_1800users.csv", "Baseline_2400users.csv", "Baseline_2997users.csv")
+fabl <- c("FileAudit_Baseline_900users.csv", "FileAudit_Baseline_1200users.csv", "FileAudit_Baseline_1800users.csv", "FileAudit_Baseline_2400users.csv", "FileAudit_Baseline_2997users.csv")
+difa <- c("DI_FileAudit_900users.csv", "DI_FileAudit_1200users.csv", "DI_FileAudit_1800users.csv", "DI_FileAudit_2400users.csv", "DI_FileAudit_2997users.csv")
+disc <- c("DI_ScanningOnly_900.csv", "DI_ScanningOnly_1200.csv", "DI_ScanningOnly_1800.csv", "DI_ScanningOnly_2400.csv", "DI_ScanningOnly_2997.csv")
+difasc <- c("DI_FileAuditScanning_900users.csv", "DI_FileAuditScanning_1200users.csv", "DI_FileAuditScanning_1800users.csv", "FileAudit_Baseline_2400users.csv", "FileAudit_Baseline_2997users.csv")
+
 users <- c("900 users", "1200 users", "1800 users", "2400 users", "3000 users")
 metrics <- c("SMB2.Ops.sec", "VSPfs00.Ops.sec", "VSPfs00.CIFS.Read.Resp.Time", "VSPfs00.CIFS.Write.Resp.Time", "MFB", "MMB", "NibRX.Busy", "NibTX.Busy", 
              "NibTCP.Busy", "NICC.Busy", "FDP.Busy", "TDP.Busy", "FSA.Busy", "MBI.Busy", "WDIR.Busy", "WFILE.Busy", "WLOG.Busy", "OBJ.Busy", "SI.Busy", "Eth.RX", 
              "Eth.TX", "FC.RX", "FC.TX", "Port1.Disk.Read", "Port1.Disk.Write", "Port2.Disk.Read", "Port2.Disk.Write", "Port3.Disk.Read", "Port3.Disk.Write",
              "Port4.Disk.Read", "Port4.Disk.Write")
 
-out <- ruscproc(files, users, metrics)
-write.csv(out, file = "FileAudit_Baseline_summary.csv")
+write.csv(ruscproc(bl, users, metrics), file = "Baseline_summary.csv")
+write.csv(ruscproc(fabl, users, metrics), file = "FileAudit_Baseline_summary.csv")
+write.csv(ruscproc(difa, users, metrics), file = "DI_FileAudit_summary.csv")
+write.csv(ruscproc(disc, users, metrics), file = "DI_ScanningOnly_summary.csv")
+write.csv(ruscproc(difasc, users, metrics), file = "DI_FileAuditScanning_summary.csv")
 
 
 ##########################
