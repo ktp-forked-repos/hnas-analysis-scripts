@@ -1,4 +1,4 @@
-ruscproc <- function(filelist, users, metrics){
+ruscmean <- function(filelist, users, metrics){
         result <- data.frame(row.names = metrics)
         for(i in 1:length(filelist)){
                 data <- read.csv(filelist[i],colClasses = "character")
@@ -22,11 +22,11 @@ metrics <- c("SMB2.Ops.sec", "VSPfs00.Ops.sec", "VSPfs00.CIFS.Read.Resp.Time", "
              "Eth.TX", "FC.RX", "FC.TX", "Port1.Disk.Read", "Port1.Disk.Write", "Port2.Disk.Read", "Port2.Disk.Write", "Port3.Disk.Read", "Port3.Disk.Write",
              "Port4.Disk.Read", "Port4.Disk.Write")
 
-write.csv(ruscproc(bl, users, metrics), file = "Baseline_summary.csv")
-write.csv(ruscproc(fabl, users, metrics), file = "FileAudit_Baseline_summary.csv")
-write.csv(ruscproc(difa, users, metrics), file = "DI_FileAudit_summary.csv")
-write.csv(ruscproc(disc, users, metrics), file = "DI_ScanningOnly_summary.csv")
-write.csv(ruscproc(difasc, users, metrics), file = "DI_FileAuditScanning_summary.csv")
+write.csv(ruscmean(bl, users, metrics), file = "Baseline_summary.csv")
+write.csv(ruscmean(fabl, users, metrics), file = "FileAudit_Baseline_summary.csv")
+write.csv(ruscmean(difa, users, metrics), file = "DI_FileAudit_summary.csv")
+write.csv(ruscmean(disc, users, metrics), file = "DI_ScanningOnly_summary.csv")
+write.csv(ruscmean(difasc, users, metrics), file = "DI_FileAuditScanning_summary.csv")
 
 
 ##########################
